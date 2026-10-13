@@ -1,7 +1,7 @@
 // =============================================
 // CONFIG
 // =============================================
-const API_BASE = 'https://bigg.onrender.com/api';
+const API_BASE = 'https://poko-oabi.onrender.com/api';
 
 // =============================================
 // AUTH HELPERS
@@ -89,11 +89,9 @@ function initLoadingScreen(messages = [], duration = 2000) {
 // LAYOUT HELPERS
 // =============================================
 function initLayout() {
-  // Inject sidebar & topbar into pages that need it
   const admin = Auth.getAdmin();
   if (!admin) return;
 
-  // Set admin info in sidebar footer
   const av = document.getElementById('admin-avatar');
   const an = document.getElementById('admin-name');
   const ar = document.getElementById('admin-role');
@@ -104,11 +102,9 @@ function initLayout() {
   if (ar) ar.textContent = admin.role?.replace('_', ' ');
   if (tw) tw.innerHTML = `Welcome back, <strong>${admin.name}</strong>`;
 
-  // Logout button
   const logoutBtn = document.getElementById('logout-btn');
   if (logoutBtn) logoutBtn.onclick = Auth.logout;
 
-  // Mobile sidebar toggle
   const menuBtn = document.getElementById('menu-btn');
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sidebar-overlay');
@@ -118,7 +114,6 @@ function initLayout() {
     overlay.onclick = () => { sidebar.classList.remove('open'); overlay.classList.remove('open'); };
   }
 
-  // Mark active nav link
   const page = window.location.pathname.split('/').pop();
   document.querySelectorAll('.nav-link').forEach(link => {
     const href = link.getAttribute('href');
